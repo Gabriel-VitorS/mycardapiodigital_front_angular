@@ -1,0 +1,64 @@
+<app-full-screen-layout>
+    <div class="row h-100">
+
+      <section class="col-md-6 col-sm-12 col d-flex align-items-center justify-content-center">
+
+        <div class="w-100" style="max-width: 400px;">
+          <section>
+            <h2>
+              Login
+            </h2>
+            <p class="text-secondary">Entre com seu email e senha para acessar sua conta. </p>
+          </section>
+
+          <section>
+            <form [formGroup]="loginForm" (ngSubmit)="submit()">
+
+              <div class="mb-3">               
+                <app-default-input
+                label="E-mail: "
+                [required]="true"
+                placeholder="Digite seu e-mail"
+                [control]="loginForm.controls.email" />
+              </div>
+
+              <div class="mb-3">
+                <app-password-input
+                label="Senha: "
+                [required]="true"
+                placeholder="Digite sua senha"
+                [control]="loginForm.controls.password"
+                 />
+              </div>
+              <div class="mt-4">
+                  <button type="submit" [disabled]="!loginForm.valid && !(false)" class="btn btn-primary w-100">
+                      Entrar
+
+                      @if (isSending()) {
+                        
+                        <app-spinner-sm class="ms-2" />
+                      }
+
+                  </button>
+              </div>
+            </form>
+          </section>
+          
+          <div class="mt-2">
+            <p>Nâo tem uma conta? <a routerLink="/gestor/cadastro">Cadastre-se</a> </p>
+          </div>
+        </div>
+
+      </section>
+
+      <section class="col-md-6 d-md-block d-none bg-primary flex justify-content-center align-content-center">
+        <div class="position-absolute top-0 end-0">
+          <img class="img-fluid" src="images/shape/grid-01.svg" alt="grid" width="300" />
+        </div>
+
+        <div class="text-center">
+          <p class="text-light">Seu cardápio digital em um só lugar.</p>
+        </div>
+      </section>
+    </div>
+</app-full-screen-layout>
