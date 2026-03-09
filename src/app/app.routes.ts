@@ -9,5 +9,9 @@ export const routes: Routes = [
     {
         path: 'gestor/login',
         loadComponent: ()=> import('./features/auth/login/login.component')
+    },
+    {
+        path: 'gestor/cadastro',
+        loadComponent: ()=> import('./features/auth/register/register.component')
     }
 ];

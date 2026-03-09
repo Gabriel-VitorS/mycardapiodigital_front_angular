@@ -1,4 +1,4 @@
-import { Injectable} from '@angular/core';
+import { Injectable, signal} from '@angular/core';
 import { IToast, IToastOptions } from '../../interfaces/Toast.interface';
 
 
@@ -7,18 +7,18 @@ import { IToast, IToastOptions } from '../../interfaces/Toast.interface';
 })
 export class ToastService {
 
-  toasts: IToast[] = []
+  toasts = signal<IToast[]>([])
 
   show(text: string, options: IToastOptions = {}){
-    this.toasts.push({text, options: options})
+    this.toasts.update(current => [...current, {text, ...options, options}])
   }
 
   remove(toast: IToast) {
-    this.toasts = this.toasts.filter(t => t !== toast)
+    this.toasts.update(current => current.filter(t => t !== toast))
 	}
 
   clear(){
-    this.toasts.splice(0, this.toasts.length)
+    this.toasts.update(current => current.slice(0, this.toasts.length))
   }
 
 }

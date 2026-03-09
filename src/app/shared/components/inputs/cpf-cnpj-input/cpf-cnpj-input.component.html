@@ -1,0 +1,26 @@
+<label for="" class="form-label"> CPF ou CNPJ
+  <span class="text-danger">*</span>
+</label> 
+
+<input 
+type="text"
+class="form-control"
+mask="CPF_CNPJ"
+[validation]="false"
+[class.is-invalid]="control.invalid && control.touched"
+[formControl]="control">
+
+@if (control.invalid && control.touched) {
+  <div class="invalid-feedback">
+    @if(control.errors?.['required']){
+      <small>Campo obrigatório</small>
+    }
+    @else if(control.errors?.['invalidCpf']){
+      <small>CPF inválido</small>
+    }@else if(control.errors?.['invalidCnpj']){
+      <small>CNPJ inválido</small>
+    }@else {
+      <small>Campo inválido</small>
+    }
+  </div>
+}

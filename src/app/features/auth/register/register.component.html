@@ -1,0 +1,98 @@
+<app-full-screen-layout>
+    <div class="row h-100">
+
+        <section class="col-md-6 col-sm-12 col d-flex align-items-center justify-content-center">
+
+        <div class="w-100" style="max-width: 400px;">
+          <section>
+            <h2>
+              Cadastro
+            </h2>
+            
+          </section>
+
+          <section>
+            <form [formGroup]="registerForm" (ngSubmit)="submit()">
+
+              <div class="mb-3">
+                <app-default-input
+                [control]="registerForm.controls.name"
+                label="Nome: "
+                placeholder="Digite seu nome"
+                [required]="true"
+                />
+
+              </div>
+
+              <div class="mb-3">
+                <app-default-input
+                [control]="registerForm.controls.email"
+                label="E-mail: "
+                placeholder="Digite seu e-mail"
+                type="email"
+                [required]="true"
+                />
+              </div>
+
+              <div class="mb-3">
+                <app-cpf-cnpj-input
+                [control]="registerForm.controls.cpf_cnpj"
+                 />
+              </div>
+
+              <div class="mb-3">
+                <app-password-input
+                [control]="registerForm.controls.password"
+                label="Senha: "                
+                placeholder="Digite a senha"
+                [required]="true"
+                />
+              </div>
+
+              <div class="mb-3">
+                <app-password-input
+                [control]="registerForm.controls.password_confirmation"
+                label="Digite novamente a senha: "                
+                placeholder="Digite a senha"
+                [required]="true"
+                />
+                @if (registerForm.errors?.['passwordMismatch']) {
+                  <div class="invalid-feedback d-block">
+                  
+                      <small>As senhas não são iguais</small>
+                    </div>
+                  }  
+
+              </div>
+
+              <div class="mt-4">
+                  <button type="submit" [disabled]="!registerForm.valid" class="btn btn-primary w-100">
+                      Cadastrar
+                      
+                      @if (isSending()) {
+                        <app-spinner-sm class="ms-2" />
+
+                      }
+                  </button>
+              </div>
+            </form>
+          </section>
+          
+          <div class="mt-2">
+            <p>Já tem uma conta? <a routerLink="/gestor/login"> Faça o login </a></p>
+          </div>
+        </div>
+
+      </section>
+
+      <section class="col-md-6 d-md-block d-none bg-primary flex justify-content-center align-content-center">
+        <div class="position-absolute top-0 end-0">
+          <img class="img-fluid" src="images/shape/grid-01.svg" alt="grid" width="300" />
+        </div>
+
+        <div class="text-center">
+          <p class="text-light">Seu cardápio digital em um só lugar.</p>
+        </div>
+      </section>
+    </div>
+</app-full-screen-layout>

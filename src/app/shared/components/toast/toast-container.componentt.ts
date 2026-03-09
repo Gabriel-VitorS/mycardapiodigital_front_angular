@@ -8,7 +8,7 @@ import { NgbToast } from '@ng-bootstrap/ng-bootstrap/toast';
     selector: 'app-toasts',
     imports: [NgbToast],
     template: `
-        @for (toast of toastService.toasts; track toast){
+        @for (toast of toastService.toasts(); track toast){
             <ngb-toast
             [class]="toast.options.type"
             [autohide]="true"
