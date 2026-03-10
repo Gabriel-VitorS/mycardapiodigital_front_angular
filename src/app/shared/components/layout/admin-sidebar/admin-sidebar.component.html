@@ -1,0 +1,40 @@
+<aside class="border-end border-subtle py-2 pt-2 ps-3 pe-3 d-flex flex-column flex-shrink-0 bg-light-subtle"
+  [class.bg-dark]="themService.isDarkMode()"
+  [class.show-sidebar]="sidebarService.sidebarOpen()"
+  >
+    <div class="d-flex justify-content-between">
+
+        <a [routerLink]="['/gestor/inicio']" >
+            @if (themService.isDarkMode()) {
+              <img src="images/mycardapiodigital_light.svg" alt="logo" width="150">
+
+            }@else {
+              <img src="images/mycardapiodigital_dark.svg" alt="logo" width="150">
+
+            }
+            
+        </a>
+
+        <div class="d-flex justify-content-center d-md-none d-block"
+          style="width: 30px; height: 30px;" role="button"
+          (click)="sidebarService.closeSidebar()">
+            <i class="bi bi-x-lg"></i>
+
+        </div>
+    </div>
+
+    <hr>
+
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          @for (item of menuGroup; track $index) {
+            <a class="nav-link"
+              [routerLink]="item.path"
+              [routerLinkActive]="'active'">
+              <i [class]="item.icon"></i>
+              {{item.name}}
+            </a>
+          }
+        </li>
+    </ul>
+</aside>
