@@ -1,0 +1,11 @@
+<div class="admin-layout d-flex">
+    
+    <app-admin-sidebar />
+    <div class="flex-grow-1 d-flex flex-column">
+
+        <app-admin-header/>
+            <div class="p-2 p-md-5 h-100" ss="{'bg-light': !isDarkMode}">
+                <router-outlet></router-outlet>
+            </div>
+    </div>
+</div>

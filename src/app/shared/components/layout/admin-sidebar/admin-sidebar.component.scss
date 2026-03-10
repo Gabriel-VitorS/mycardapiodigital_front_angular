@@ -1,0 +1,23 @@
+:host{
+    aside{
+        width: 280px;
+        transition: left 0.3s ease-in-out;
+        height: 100%;
+    }
+
+    @media screen and (max-width: 768px) {
+  
+        aside{
+            position: fixed;
+            left: -500px;
+            height: 100vh;
+        }
+
+        .show-sidebar{
+            left: 0;
+            position: absolute;
+            width: 100vw;
+            z-index: 5;
+        }
+    }
+}

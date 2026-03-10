@@ -1,0 +1,43 @@
+<header class="border-bottom border-subtle py-3 pt-2">
+    <div class="container-fluid ">
+        <div class="row">
+
+            <div class="col">
+                <div class="border text-center d-md-none d-block" 
+                    style="border-radius: 5px; width: 45px;"
+                    role="button"
+                    (click)="sidebarSerive.toggleSidebar()">
+                    <i class="bi bi-list fs-4"></i>
+                </div>
+            </div>
+            
+            <div class="col">
+                <!-- <a [routerLink]="['/gestor/inicio']"></a> -->
+            </div>
+
+            <div class="col d-flex justify-content-end align-items-center">
+
+                <div class="me-3"  (click)="themeService.toggleTheme()" role="button">
+                    @if (themeService.isDarkMode()) {
+                        <i class="bi bi-brightness-high-fill"></i>
+                    }@else {                        
+                        <i v-else class="bi bi-moon-stars-fill"></i>
+                    }
+                </div>
+                
+
+                <div ngbDropdown>
+                    <button ngbDropdownToggle class="btn btn-light"
+                     [class.btn-dark]="themeService.isDarkMode()" role="button"
+                     data-bs-toggle="dropdown" aria-expanded="false">
+                        {{companyService.getCompany()?.name}}
+                    </button>
+                    
+                    <div ngbDropdownMenu>
+                        <button (click)="loggout()" ngbDropdownItem class="dropdown-item">Sair</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

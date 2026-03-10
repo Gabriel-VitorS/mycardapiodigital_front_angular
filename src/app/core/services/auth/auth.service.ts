@@ -46,6 +46,6 @@ export class AuthService {
   }
 
   getToken(){
-    return JSON.parse(sessionStorage.getItem(SessionStorage.JWT)!)
+    return sessionStorage.getItem(SessionStorage.JWT)!
   }
 }
