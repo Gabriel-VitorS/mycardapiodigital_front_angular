@@ -1,0 +1,35 @@
+<div class="container">
+          <div class="row justify-content-center gy-2">
+            
+            <button [routerLink]="['/gestor/configuracao-cardapio']"  class="card col-12 col-md-12 me-2" style="width: 18rem;">
+                <div class="card-body text-center">
+                    <i class="bi bi-gear"  style="font-size: 2rem;"></i>
+                    <p>Config Cardápio</p>
+                </div>
+            </button>
+
+            <button to="/gestor/categorias" class="card col-12 col-md-12 me-2" style="width: 18rem;">
+                <div class="card-body text-center">
+                    <i class="bi bi-tags" style="font-size: 2rem;"></i> 
+                    <p>Categorias</p>
+                </div>
+            </button>
+
+            <button to="/gestor/produtos" class="card col-12 col-md-12 me-2" style="width: 18rem;">
+                <div class="card-body text-center">
+                    <i class="bi bi-box"  style="font-size: 2rem;"></i>
+                    <p>Produtos</p>
+                </div>
+            </button>
+
+            @if (menuConfigService.getMenuIsConfigured()) {
+              
+              <a [href]="menuConfigService.getLinkMenu()" target="_blank" class="card col-12 col-md-12 me-2" style="width: 18rem;">
+                  <div class="card-body text-center">
+                      <i class="bi bi-box-arrow-up-right"  style="font-size: 2rem;"></i>
+                      <p>Acessar cardápio</p>
+                  </div>
+              </a>
+            }
+        </div>
+</div>
