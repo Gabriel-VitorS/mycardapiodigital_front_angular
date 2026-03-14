@@ -1,0 +1,20 @@
+<section class="row">
+    <div class="col-md-8">
+        <h4 class="p-0 m-0">{{ inputPageTitle }}</h4>
+    </div>
+
+    <div class="col-md-4 mt-2 text-md-end text-start">
+        <a [routerLink]="['/gestor/inicio']" 
+        class="link-underline-opacity-0 link-dark"
+        [class.link-light]="themeService.isDarkMode()"
+        [class.link-dark]="!themeService.isDarkMode()"> 
+        Ínicio</a>
+        <i style="font-size: 0.8em;" class="px-2 bi bi-chevron-right"> </i>
+        <a class="link-underline-opacity-0" 
+        [class.link-light]="themeService.isDarkMode()"
+        [class.link-dark]="!themeService.isDarkMode()">
+         {{ inputPageTitle }}</a>
+    </div>
+    
+
+</section>

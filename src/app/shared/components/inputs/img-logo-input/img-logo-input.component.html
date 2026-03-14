@@ -1,0 +1,30 @@
+<label class="form-label">Selecione uma imagem para a logo </label>
+<input type="file"
+class="form-control"
+accept="image/png, image/jpeg, image/jpg"
+(change)="fileChangeEvent($event)" />
+
+
+<ng-template #myModal let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Cortar imagem</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+	</div>
+	<div class="modal-body">
+		<image-cropper
+		#cropper
+		[imageChangedEvent]="imageChangedEvent"
+		[aspectRatio]="4/4"
+		[autoCrop]="false"
+		(imageCropped)="imageCropped($event)"
+		>
+		
+		</image-cropper>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-danger" (click)="modal.close()">Cancelar</button>
+		<button type="button" class="btn btn-outline-success" (click)="cropImage()">Cortar</button>
+	</div>
+</ng-template>
+
+<img [src]="croppedImage ?? inputUrlImage" alt="" width="100" height="100">

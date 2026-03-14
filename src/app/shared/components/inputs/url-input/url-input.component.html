@@ -1,0 +1,24 @@
+
+<label for="" class="form-label">
+  URL <span class="text-danger">*</span>
+</label>
+
+
+<input 
+type="text"
+class="form-control"
+[class.is-invalid]="control.invalid && control.touched"
+[formControl]="control">
+
+@if (control.invalid && control.touched) {
+  <div class="invalid-feedback">
+    @if(control.errors?.['required']){
+      <small>Campo obrigatório</small>
+    }
+    @else if(control.errors?.['pattern']){
+      <small>A URL só pode conter letras de A à Z, números e -</small>
+    }@else {
+      <small>Campo inválido</small>
+    }
+  </div>
+}

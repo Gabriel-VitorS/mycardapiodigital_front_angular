@@ -8,3 +8,10 @@ export interface MenuConfiResponse extends CommonInterface{
     background_color: string
     url_logo?: string
 }
+
+export interface MenuConfigRequest {
+    name_company: string
+    url: string
+    background_color: string
+    theme_color: string
+}
