@@ -24,6 +24,10 @@ export const routes: Routes = [
             {
                 path: 'inicio',
                 loadComponent: ()=> import('./features/admin/home/home.component')
+            },
+            {
+                path: 'configuracao-cardapio',
+                loadComponent: () => import('./features/admin/menu-config/menu-config.component')
             }
         ]
     }

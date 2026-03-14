@@ -1,0 +1,66 @@
+<app-breadcrumb
+inputPageTitle="Configurações do cardápio" />
+
+<app-admin-card inputPageTitle="Configurações do cardápio">
+    @if (isLoading()) {
+        <app-loader />        
+    }@else {
+
+        <form class="row gy-3" [formGroup]="menuConfigForm" (ngSubmit)="submit()">
+    
+            <div class="col-md-6">
+                <app-default-input
+                label="Nome do estabelecimento:"
+                [required]="true"
+                [control]="menuConfigForm.controls.name_company"
+                />
+            </div>
+    
+            <div class="col-md-6">
+                <app-url-input
+                [control]="menuConfigForm.controls.url"/>
+            </div>
+    
+            <div class="col-md-6">
+                <app-select-input
+                [options]="selectOptions"
+                label="Cor de fundo do Cardápio"
+                [required]="true"
+                [control]="menuConfigForm.controls.background_color"
+                />
+            </div>
+    
+            <div class="col-md-6">
+                <app-default-input
+                label="Selecione a cor de destaque:"
+                type="color"
+                [required]="true"
+                [control]="menuConfigForm.controls.theme_color"/>
+            </div>
+    
+            <div class="col-md-6">
+                <app-img-logo-input
+                [inputUrlImage]="menuConfigService.getMenuConfig()?.url_logo ?? ''"
+                (imageReady)="onImageCropped($event)" />
+                
+            </div>
+    
+            <div class="col-12 text-center mx-auto">
+                <button class="btn btn-primary w-100">
+                    Enviar
+                    @if (isSending()) {
+                        <app-spinner-sm />
+                    }
+                    
+                </button>
+                @if (menuConfigService.getMenuIsConfigured()) {
+                    <a [href]="menuConfigService.getLinkMenu()" target="_blank" class="btn btn-secondary ms-md-1 mt-md-0 mt-2 w-100">
+                        Acessar cardápio 
+                        <i class="bi bi-box-arrow-up-right" ></i>
+                    </a>                    
+                }
+            </div>
+        </form>
+    }
+
+</app-admin-card>
