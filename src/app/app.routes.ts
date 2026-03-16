@@ -28,7 +28,15 @@ export const routes: Routes = [
             {
                 path: 'configuracao-cardapio',
                 loadComponent: () => import('./features/admin/menu-config/menu-config.component')
-            }
+            },
+            {
+                path: 'categorias',
+                loadComponent: () => import('./features/admin/category/list-categories/list-categories.component')
+            },
+            // {
+            //     path: 'categoria/:id',
+            //     loadComponent: () => import('./features/admin/category/category/category.component')
+            // }
         ]
     }
 ];

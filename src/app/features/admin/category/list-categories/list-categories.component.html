@@ -1,0 +1,74 @@
+<app-breadcrumb inputPageTitle="Categorias" />
+
+<app-admin-card inputPageTitle="Categorias">
+<form class="row gy-2" [formGroup]="categoryFilterForm" (ngSubmit)="searchData()">
+  <div class="col-lg-2">
+    <app-select-input
+    [options]="optionsSelect"
+    [control]="categoryFilterForm.controls.selected_filter"
+    />
+      
+  </div>
+
+  <div class="col-lg-2">
+    <app-default-input
+    [control]="categoryFilterForm.controls.value_filter" />
+  </div>
+
+  <div class="col-auto">
+    @if (hasFilter()) {
+      <i (click)="resetFilter()" class="me-3 bi bi-x-lg" role="button"></i>
+    }
+    <button class="btn btn-secondary">
+      <i class="bi bi-search"></i>  Buscar 
+      </button>
+  </div>
+
+  <div class="col-auto text-end">
+      <a [routerLink]="['/gestor/categoria', 0]" class="btn btn-primary">
+        <i class="bi bi-plus-lg"></i> Incluir
+      </a>
+      
+  </div>
+
+</form>
+
+@if (categoryService.getListCategory() && !isLoading()) {
+
+  <section class="row mt-4" v="categoryStore.categories && !isLoading">
+  
+    <table class="table table-hover" style="--bs-table-bg: none">
+      <thead>
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">Ordem de exibição</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        @for (category of categoryService.getListCategory()?.data; track category.id) {
+          
+          <tr class="cursor-pointer" [routerLink]="['/gestor/categoria', category.id]">
+            <td scope="row" role="button">{{ category.name }}</td>
+            <td role="button">{{ category.order }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </section>
+}
+
+@if (!isLoading() && categoryService.getListCategory(); as response) {
+  <ngb-pagination
+  [(page)]="response.current_page"
+  [pageSize]="response.per_page"
+  [collectionSize]="response.total"
+  [boundaryLinks]="true"
+  (pageChange)="onPageChange($event)"
+  />
+}
+
+@if (isLoading()) {
+  <app-loader />
+}
+</app-admin-card>
