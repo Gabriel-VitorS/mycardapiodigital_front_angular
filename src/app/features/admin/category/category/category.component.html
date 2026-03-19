@@ -1,0 +1,44 @@
+<app-admin-card [inputPageTitle]="titleCard()">
+@if (isLoading()) {
+    <app-loader />
+}@else{
+    <form class="row gy-3" [formGroup]="categoryForm" (ngSubmit)="submit()">
+        <div class="col-md-6">
+            <app-default-input
+            label="Nome da categoria:"
+            [required]="true"
+            [control]="categoryForm.controls.name" />
+    
+        </div>
+    
+        <div class="col-md-6">
+            <app-default-input
+            label="Ordem de exibição:"
+            type="text"
+            [required]="true"
+            [control]="categoryForm.controls.order" />
+    
+        </div>
+        <div class="col-12 text-center mx-auto">
+            <button class="btn btn-primary w-100" [disabled]="!categoryForm.valid">
+                {{categoryId() == 0 ? 'Incluir' : 'Salvar' }}
+
+                @if(isSending()){
+                    <app-spinner-sm />
+                }
+
+            </button>
+            
+            @if (categoryId() != 0) {
+                <button type="button" (click)="deleteCategory()" class="btn btn-danger w-100 ms-md-1 mt-md-0 mt-2">Apagar</button>
+
+                @if(isSending()){
+                    <app-spinner-sm />
+                }
+            }
+            <a [routerLink]="['/gestor/categorias']" class="btn btn-secondary w-100 ms-md-1 mt-md-0 mt-2">Voltar</a>
+        </div>
+    </form>
+
+}
+</app-admin-card>

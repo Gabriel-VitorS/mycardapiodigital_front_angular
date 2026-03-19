@@ -33,10 +33,10 @@ export const routes: Routes = [
                 path: 'categorias',
                 loadComponent: () => import('./features/admin/category/list-categories/list-categories.component')
             },
-            // {
-            //     path: 'categoria/:id',
-            //     loadComponent: () => import('./features/admin/category/category/category.component')
-            // }
+            {
+                path: 'categoria/:id',
+                loadComponent: () => import('./features/admin/category/category/category.component')
+            }
         ]
     }
 ];

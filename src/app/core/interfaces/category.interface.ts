@@ -1,12 +1,12 @@
 import {CommonInterface, Pagination} from './common.interface'
 
-export interface Category extends CommonInterface{
+export interface CategoryResponse extends CommonInterface{
     name: string
     order: number
 }
 
-export interface CategoryReponse extends Pagination {
-    data: [Category]
+export interface CategoriesReponse extends Pagination {
+    data: [CategoryResponse]
 }
 
 export interface CategoryParams {
@@ -16,4 +16,7 @@ export interface CategoryParams {
     page: number
 }
 
-export interface CategoryRequest {}
+export interface CategoryRequest {
+    name: string
+    order: number | null
+}
