@@ -1,0 +1,79 @@
+<app-breadcrumb inputPageTitle="Produtos" />
+
+<app-admin-card inputPageTitle="Produtos">
+<form class="row gy-2" [formGroup]="productFilterForm" (ngSubmit)="searchData()">
+  <div class="col-lg-2">
+    <app-select-input
+    [options]="optionsSelect"
+    [control]="productFilterForm.controls.selected_filter"
+    />
+      
+  </div>
+
+  <div class="col-lg-2">
+    <app-default-input
+    [control]="productFilterForm.controls.value_filter" />
+  </div>
+
+  <div class="col-auto">
+    @if (hasFilter()) {
+      <i (click)="resetFilter()" class="me-3 bi bi-x-lg" role="button"></i>
+    }
+    <button class="btn btn-secondary">
+      <i class="bi bi-search"></i>  Buscar 
+      </button>
+  </div>
+
+  <div class="col-auto text-end">
+      <a [routerLink]="['/gestor/categoria', 0]" class="btn btn-primary">
+        <i class="bi bi-plus-lg"></i> Incluir
+      </a>
+      
+  </div>
+
+</form>
+
+@if (productService.getListProducts() && !isLoading()) {
+  <section class="row mt-4">
+    <table class="table table-hover" style="--bs-table-bg: none">
+        <thead>
+          <tr>
+              <th>Nome</th>
+              <th>Valor</th>
+              <th>Destaque</th>
+              <th>Visível online</th>
+              <th>Categoria</th>
+          </tr>
+        </thead>
+
+
+      <tbody >
+        @for (product of productService.getListProducts()?.data; track product.id) {
+
+          <tr class="cursor-pointer" [routerLink]="['/gestor/produto', product.id]">
+            <td scope="row" role="button">{{ product.name }}</td>
+            <td role="button">{{ product.value |currency: "BRL"}}</td>
+            <td role="button">{{ product.highlight == 1 ? "Sim": "Não" }}</td>
+            <td role="button">{{ product.visible_online == 1 ? "Sim": "Não" }}</td>
+            <td role="button">{{ product.category?.name }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+  </section>
+}
+
+@if (!isLoading() && productService.getListProducts(); as response) {
+  <ngb-pagination
+  [(page)]="response.current_page"
+  [pageSize]="response.per_page"
+  [collectionSize]="response.total"
+  [boundaryLinks]="true"
+  (pageChange)="onPageChange($event)"
+  />
+
+
+}
+
+</app-admin-card>
