@@ -36,6 +36,10 @@ export const routes: Routes = [
             {
                 path: 'categoria/:id',
                 loadComponent: () => import('./features/admin/category/category/category.component')
+            },
+            {
+                path: 'produtos',
+                loadComponent: () => import('./features/admin/product/list-products/list-products.component')
             }
         ]
     }
