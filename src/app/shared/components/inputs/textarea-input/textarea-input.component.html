@@ -1,0 +1,23 @@
+@if (label !== '') {
+  <label for="" class="form-label">{{label}}
+  @if(required){
+    <span v-if="required" class="text-danger">*</span>
+  }
+  </label>
+}
+<textarea 
+class="form-control"
+[class.is-invalid]="control.invalid && control.touched"
+[formControl]="control">
+</textarea>
+
+@if (control.invalid && control.touched) {
+  <div class="invalid-feedback">
+    @if(control.errors?.['required']){
+      <small>Campo obrigatório</small>
+    }
+    @else {
+      <small>Campo inválido</small>
+    }
+  </div>
+}

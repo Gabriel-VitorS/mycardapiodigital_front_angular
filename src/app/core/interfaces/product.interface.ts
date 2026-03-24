@@ -29,5 +29,9 @@ export interface ProductParams {
 
 export interface ProductRequest {
     name: string
-    order: number | null
+    category_id: number | null,
+    value: number | string,
+    details: null | string,
+    highlight: 1 | 0 | boolean,
+    visible_online:  1 | 0 | boolean,
 }
