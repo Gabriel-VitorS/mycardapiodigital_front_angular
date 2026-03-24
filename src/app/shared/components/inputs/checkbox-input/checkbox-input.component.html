@@ -1,0 +1,14 @@
+<div class="form-check form-switch">
+  @if (label != '') {
+    <label class="form-check-label">
+      {{ label }} 
+    </label>
+    
+  }
+
+  <input 
+  type="checkbox"
+  [formControl]="control"
+  class="form-check-input" />
+
+</div>

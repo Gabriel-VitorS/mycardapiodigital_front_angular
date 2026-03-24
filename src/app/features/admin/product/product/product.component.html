@@ -1,0 +1,77 @@
+<app-admin-card [inputPageTitle]="titleCard()">
+  @if (isLoading()) {
+    <app-loader />
+  }@else{
+    <form class="row gy-3" [formGroup]="productForm" (ngSubmit)="submit()">
+        <div class="col-md-6">
+            <app-default-input
+            label="Nome do produto:"
+            [required]="true"
+            [control]="productForm.controls.name" />
+    
+        </div>
+    
+        <div class="col-md-6">
+            <app-money-input
+            [control]="productForm.controls.value"
+            />
+    
+        </div>
+
+        <div class="col-md-6">
+            <app-select-input
+            label="Selecione a categoria do produto"
+            [control]="productForm.controls.category"
+            [options]="optionsSelect" />
+    
+        </div>
+
+        <div class="col-md-6">
+            <app-checkbox-input
+            label="Produto em destaque?"
+            [control]="productForm.controls.highlight"
+            />
+
+            <app-checkbox-input
+            label="Produto é visível no cardápio?"
+            [control]="productForm.controls.visible_online"
+            
+            />
+        </div>
+
+        <div class="col-md-6">
+            <app-textarea-input
+            label="Detalhes do produto: "
+            [control]="productForm.controls.details" />
+        </div>
+
+        <div class="col-md-6">
+            <app-img-product-input
+            [inputUrlImage]="productService.getProduct()?.url_image ?? ''"
+            (imageReady)="onImageCropped($event)" />
+        </div>
+        <div class="col-12 text-center mx-auto">
+            <button class="btn btn-primary w-100" [disabled]="!productForm.valid">
+                {{productId() == 0 ? 'Incluir' : 'Salvar' }}
+
+                @if(isSending()){
+                    <app-spinner-sm />
+                }
+
+            </button>
+            
+            @if (productId() != 0) {
+                <button type="button" (click)="deleteProduct()" class="btn btn-danger w-100 ms-md-1 mt-md-0 mt-2">Apagar
+                    @if(isSending()){
+                        <app-spinner-sm />
+                    }
+                    
+                </button>
+
+            }
+            <a [routerLink]="['/gestor/produtos']" class="btn btn-secondary w-100 ms-md-1 mt-md-0 mt-2">Voltar</a>
+        </div>
+    </form>
+
+  }
+</app-admin-card>
