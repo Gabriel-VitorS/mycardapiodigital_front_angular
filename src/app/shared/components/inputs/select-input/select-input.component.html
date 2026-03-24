@@ -1,9 +1,12 @@
-<label class="form-label">
-    {{ label }}
-    @if(required){
-      <span class="text-danger">*</span>
-    }
-</label>
+@if (label != '') {
+  <label class="form-label">
+      {{ label }}
+      @if(required){
+        <span class="text-danger">*</span>
+      }
+  </label>
+
+}
 
 <select 
     class="form-select"
