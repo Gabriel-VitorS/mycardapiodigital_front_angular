@@ -2,7 +2,8 @@ import { Component, inject, signal } from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { EToastOptions } from '../../../core/enums/ToastOptions.enum';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
+import { finalize } from 'rxjs';
 
 //services
 import { AuthService } from '../../../core/services/auth/auth.service';
@@ -25,6 +26,7 @@ export default class LoginComponent {
   private fb = inject(FormBuilder)
   private authService = inject(AuthService)
   toastService = inject(ToastService)
+  router = inject(Router)
 
   isSending = signal(false)
 
@@ -33,9 +35,7 @@ export default class LoginComponent {
     password: ['', [Validators.required]]
   })
 
-  showStandard(){
-    this.toastService.show('Teste', {type: EToastOptions.SUCCESS})
-  }
+
 
   submit(){
 
@@ -47,16 +47,21 @@ export default class LoginComponent {
     this.authService.httpLogin({
       email: this.loginForm.value.email ?? '',
       password: this.loginForm.value.password ?? ''
-    }).subscribe({
+    })
+    .pipe(
+      finalize(()=>{
+        this.isSending.set(false)
+      })
+    )
+    .subscribe({
       next: (res) =>{
         //redireciona
-        console.log('sucesso')
+        this.router.navigate(['/gestor/inicio'])
       },
       error: (err: HttpErrorResponse) =>{
         console.log(err)
         this.toastService.show('Login ou senha inválida', {type: EToastOptions.DANGER})
       },
-      complete:  () =>{ this.isSending.set(false)}
 
     })
 
