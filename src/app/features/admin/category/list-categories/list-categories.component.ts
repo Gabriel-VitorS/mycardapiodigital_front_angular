@@ -40,11 +40,10 @@ export default class ListCategoriesComponent implements OnInit {
   })
 
   isLoading = signal(true)
-  page = signal(1)
   hasFilter = signal(false)
   
   params: CategoryParams = {
-    page: this.page()
+    page: 1,
   }
   
   optionsSelect: OptionsSelect[] = [
@@ -74,7 +73,7 @@ export default class ListCategoriesComponent implements OnInit {
   }
 
   onPageChange(page: number){
-    this.page.set(page)
+    this.params.page = page
     this.getAllCategory()
   }
 
@@ -93,7 +92,7 @@ export default class ListCategoriesComponent implements OnInit {
       value_filter: ''
     })
     delete this.params['name']
-    this.page.set(1)
+    this.params.page = 1
     this.hasFilter.set(false)
     this.getAllCategory()
   }

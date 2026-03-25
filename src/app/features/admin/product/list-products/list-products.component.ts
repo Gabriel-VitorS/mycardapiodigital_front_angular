@@ -38,12 +38,11 @@ export default class ListProductsComponent implements OnInit {
     {label: 'Categoria', value: 'category'}
   ]
 
-  page = signal(1)
   isLoading = signal(true)
   hasFilter = signal(false)
 
   params: ProductParams = {
-    page: this.page(),
+    page: 1,
     
   }
 
@@ -68,7 +67,8 @@ export default class ListProductsComponent implements OnInit {
   }
 
   onPageChange(page: number){
-    this.page.set(page)
+    this.params.page = page
+    console.log(page)
     this.getAllProducts()
   }
 
@@ -80,7 +80,7 @@ export default class ListProductsComponent implements OnInit {
     delete this.params['name']
     this.productFilterForm.patchValue({value_filter: ''})
     this.hasFilter.set(false)
-    this.page.set(1)
+    this.params.page = 1
 
     this.getAllProducts()
   }
