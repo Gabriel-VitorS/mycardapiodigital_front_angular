@@ -1,0 +1,99 @@
+<div 
+class="container-fluid p-0 overflow-auto"
+style="height: 100dvh;"
+[style.backgroundColor]="menuBackgroundColor()"
+>
+    <div class="container">
+
+        <header class="d-flex justify-content-between py-5">
+            <h1 [class.text-white]="isDarkTheme()">
+                {{menuConfig()?.name_company}}
+            </h1>
+            
+            <img [src]="menuConfig()?.url_logo" class="rounded-3" height="100" width="100">
+
+        </header>
+
+        <section class="d-flex overflow-auto sticky-top py-3 pb-3"
+        [style.backgroundColor]="menuBackgroundColor()">
+
+        <button class="btn rounded-3 py-2 me-3"
+        [class.border]="!isDarkTheme()"
+        [class.bg-white]="!isDarkTheme()"
+        [class.bg-black]="isDarkTheme()"
+        [class.text-white]="isDarkTheme()"
+        [style.backgroundColor]="selectedCategory() == null ? `${menuConfig()?.theme_color} !important` : ''"  
+        (click)="selectCategory(0)">
+            <span class="fs-6">
+                Todos
+            </span>
+        </button>
+            @for (category of menuCategories(); track category.id) {
+                <button class="btn rounded-3 py-2 me-3"
+                [class.border]="!isDarkTheme()"
+                [class.bg-white]="!isDarkTheme()"
+                [class.bg-black]="isDarkTheme()"
+                [class.text-white]="isDarkTheme()"
+                [style.backgroundColor]="selectedCategory() == category.id ? `${menuConfig()?.theme_color} !important` : ''"  
+                (click)="selectCategory(category.id)">
+                    <span class="fs-6">
+                        {{category.name}}
+                    </span>
+                </button>
+            }
+        </section>
+
+        <section>
+
+            @for (category of filtredCategories(); track category.id) {
+                @if(selectedCategory() == null){
+                    <h3 class="mb-3 mt-3"
+                    [class.text-white]="isDarkTheme()"
+                    >
+                        {{category.name}}
+                    </h3>
+                }
+
+                @if (showList()) {
+
+                    @for (product of category.products; track product.id + '-' + selectedCategory()) {
+                        <div class="card-product rounded-3 d-flex p-3 mb-3"
+                        [class.bg-black]="isDarkTheme()"
+                        [class.text-white]="isDarkTheme()"
+                        [routerLink]="['produto', product.id]"
+                        role="button"
+                        animate.enter="enter-animation"
+                        >
+    
+                            <div class="product-img rounded-3">
+                                <img [src]="product.url_image" alt=""
+                                class="rounded-3">
+    
+                            </div>
+    
+                            <div class="ps-3 w-100">
+    
+                                <div class="d-flex justify-content-between">
+    
+                                    <h6 class="fw-semibold d-inline m-0">{{product.name}}</h6>
+                                    <h6 [style.color]="menuConfig()?.theme_color" class="fw-bold">{{product.value |currency: 'BRL'}}</h6>                            </div>
+    
+                                <div style="max-height:50px; width: 100%;"
+                                [class.text-black-50]="!isDarkTheme()"
+                                [class.text-white-50]="isDarkTheme()"
+                                > 
+    
+                                    <p class="truncate">{{product.details}}</p>
+                                </div>
+                            </div>
+    
+                        </div>
+                    }
+                }
+            }
+            
+        </section>
+        
+    </div>
+</div>
+<router-outlet></router-outlet>

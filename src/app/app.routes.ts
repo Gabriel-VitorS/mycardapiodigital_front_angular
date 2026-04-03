@@ -46,5 +46,15 @@ export const routes: Routes = [
                 loadComponent: () => import('./features/admin/product/product/product.component')
             }
         ]
+    },
+    {
+        path: 'cardapio/:name',
+        loadComponent: ()=> import('./features/menu/menu.component'),
+        children: [
+            {
+                path: 'produto/:id',
+                loadComponent: () => import('./features/menu/components/modal-product/modal-product.component')
+            }
+        ]
     }
 ];

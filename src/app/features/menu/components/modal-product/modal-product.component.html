@@ -1,0 +1,36 @@
+
+<ng-template #myModal let-modal>
+
+	<div class="modal-body page-menu"
+	[style.background]="menuService.getMenu()?.configuration?.background_color">
+		<section>
+			<img class="w-100 rounded-4" [src]="menuService.getProduct()?.url_image" alt="">
+		</section>
+
+		<section class="mt-2">
+			<h2 class="fw-bold"
+			[class.text-white]="isDarkTheme()">
+				{{ menuService.getProduct()?.name }}
+			</h2>
+			<p class="fw-semibold fs-5"
+			[style.color]="menuService.getMenu()?.configuration?.theme_color">
+				{{menuService.getProduct()?.value | currency: 'BRL'}}
+			</p>
+		</section>
+
+		<section [class.text-white]="isDarkTheme()">
+			<h4>Descrição</h4>
+			<p>{{menuService.getProduct()?.details}}</p>
+		</section>
+
+	</div>
+	<div class="modal-footer border-0 d-flex justify-content-center"
+	[style.background]="menuService.getMenu()?.configuration?.background_color">
+		<button type="button" class="btn" 
+		[class.text-white]="isDarkTheme()"
+		(click)="modal.close()"
+		[style.backgroundColor]="`${menuService.getMenu()?.configuration?.theme_color} !important`">
+			Voltar
+		</button>
+	</div>
+</ng-template>

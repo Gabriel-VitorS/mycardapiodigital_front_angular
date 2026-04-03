@@ -3,3 +3,14 @@
 /* Importing Bootstrap SCSS file. */
 @use 'bootstrap/scss/bootstrap';
 @use 'bootstrap-icons/font/bootstrap-icons.scss';
+
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Inter:wght@400;500&display=swap');
+
+.page-menu{
+    font-family: 'Inter', sans-serif !important;
+
+    h1, h2, h3, h4{
+        font-family: 'Outfit';
+    }
+}
