@@ -1,1 +1,0 @@
-import{ca as t,ya as o}from"./chunk-4UPHKJMW.js";var s=class e{constructor(){}ngOnInit(){}static \u0275fac=function(n){return new(n||e)};static \u0275cmp=t({type:e,selectors:[["app-spinner-sm"]],decls:1,vars:0,consts:[["role","status",1,"spinner-border","spinner-border-sm","me-1"]],template:function(n,p){n&1&&o(0,"div",0)},encapsulation:2})};export{s as a};
