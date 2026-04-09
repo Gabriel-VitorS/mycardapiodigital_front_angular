@@ -13,7 +13,7 @@ import { ILoginRequest, RegisterRequest } from '../../interfaces/index';
 export class AuthService {
 
   private http = inject(HttpClient)
-  private readonly API_URL = signal(environment.api_url)
+  private readonly API_URL = environment.mock ? signal('mocks/company.json') : signal(environment.api_url)
 
   private isAuthenticated = signal<boolean>(!!sessionStorage.getItem(SessionStorage.JWT))
 
@@ -22,6 +22,17 @@ export class AuthService {
   }
 
   httpLogin(credentials: ILoginRequest){
+
+    if(environment.mock){
+      return this.http.get<string>(`${this.API_URL()}`).pipe(
+        shareReplay(),
+        tap((res) => {
+          sessionStorage.setItem(SessionStorage.JWT,'TOKEN')
+          this.isAuthenticated.set(true)
+        })
+      )
+    }
+
     return this.http.post<string>(`${this.API_URL()}/login`, credentials).pipe(
       shareReplay(),
       tap((res) => {
@@ -32,6 +43,17 @@ export class AuthService {
   }
 
   httpRegister(credentials: RegisterRequest){
+
+    if(environment.mock){
+      return this.http.get<string>(`${this.API_URL()}`).pipe(
+        shareReplay(),
+        tap((res) => {
+          sessionStorage.setItem(SessionStorage.JWT,'TOKEN')
+          this.isAuthenticated.set(true)
+        })
+      )
+    }
+
     return this.http.post<string>(`${this.API_URL()}/register`, credentials).pipe(
       tap((res) => {
         sessionStorage.setItem(SessionStorage.JWT, res)

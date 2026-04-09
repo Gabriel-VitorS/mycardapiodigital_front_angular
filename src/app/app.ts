@@ -1,8 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 //components
 import { ToastsContainer } from "./shared/components/toast/toast-container.componentt";
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -11,5 +12,6 @@ import { ToastsContainer } from "./shared/components/toast/toast-container.compo
   styleUrl: './app.scss'
 })
 export class App {
+  isDemo = signal(environment.mock)
   protected readonly title = signal('mycardapiodigital_front_angular');
 }

@@ -31,8 +31,8 @@ export default class LoginComponent {
   isSending = signal(false)
 
   loginForm = this.fb.nonNullable.group({
-    email: ['',[Validators.email, Validators.required]],
-    password: ['', [Validators.required]]
+    email: ['mcdonaldsfilial38@gmail.com',[Validators.email, Validators.required]],
+    password: ['232323', [Validators.required]]
   })
 
 

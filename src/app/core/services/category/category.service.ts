@@ -10,7 +10,7 @@ import { tap } from 'rxjs';
 export class CategoryService {
 
   private http = inject(HttpClient)
-  private readonly API_URL = signal(environment.api_url)
+  private readonly API_URL = environment.mock ? signal('mocks/category') : signal(environment.api_url)
 
   private setListCategory = signal<CategoriesReponse | null>(null)
   get getListCategory(){
@@ -18,6 +18,14 @@ export class CategoryService {
   }
 
   httpListCategory(categoryParams: CategoryParams){
+
+    if(environment.mock){
+      return this.http.get<CategoriesReponse>(`${this.API_URL()}/category.json`).pipe(
+        tap((res)=>{
+          this.setListCategory.set(res)
+        })
+      )
+    }
   
     let params = new HttpParams()
 
@@ -45,6 +53,15 @@ export class CategoryService {
   }
 
   httpGetCategory(id: number){
+
+    if(environment.mock){
+      return this.http.get<CategoryResponse>(`${this.API_URL()}/${id}.json`).pipe(
+        tap((res) =>{        
+          this.setCategory.set(res)
+        })
+      )
+    }
+
     return this.http.get<CategoryResponse>(`${this.API_URL()}/category/${id}`).pipe(
       tap((res) =>{
         this.setCategory.set(res)
@@ -53,14 +70,23 @@ export class CategoryService {
   }
 
   httpPostCategory(categoryRequest: CategoryRequest){
+    if(environment.mock)
+      return this.http.get<number>(`${this.API_URL()}/category.json`)  
+
     return this.http.post<number>(`${this.API_URL()}/category`, categoryRequest)
   }
 
   httpPutCategory(id: number, categoryRequest: CategoryRequest){
+    if(environment.mock)
+      return this.http.get<number>(`${this.API_URL()}/category.json`)  
+
     return this.http.put<number>(`${this.API_URL()}/category/${id}`, categoryRequest)
   }
 
   httpDeleteCategory(id: number){
+    if(environment.mock)
+      return this.http.get(`${this.API_URL()}/category.json`)  
+
     return this.http.delete(`${this.API_URL()}/category/${id}`)
   }
 

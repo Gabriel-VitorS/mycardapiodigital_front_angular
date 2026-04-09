@@ -1,0 +1,73 @@
+{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 1,
+            "company_id": 1,
+            "name": "Lançamentos",
+            "order": 1,
+            "created_at": "2025-12-19 18:06:52",
+            "updated_at": "2025-12-19 18:06:52"
+        },
+        {
+            "id": 2,
+            "company_id": 1,
+            "name": "Carne Bovina",
+            "order": 2,
+            "created_at": "2025-12-16 21:27:47",
+            "updated_at": "2025-12-16 21:27:47"
+        },
+        {
+            "id": 3,
+            "company_id": 1,
+            "name": "Frango",
+            "order": 3,
+            "created_at": "2025-12-16 21:27:41",
+            "updated_at": "2025-12-16 21:27:41"
+        },
+        {
+            "id": 4,
+            "company_id": 1,
+            "name": "Bebidas Frias",
+            "order": 4,
+            "created_at": "2025-12-16 21:27:30",
+            "updated_at": "2025-12-16 21:27:30"
+        },
+        {
+            "id": 5,
+            "company_id": 1,
+            "name": "Sobremesas",
+            "order": 5,
+            "created_at": "2025-12-16 21:27:30",
+            "updated_at": "2025-12-16 21:27:30"
+        }
+        
+    ],
+    "first_page_url": "http:\/\/192.168.1.107:8000\/api\/category?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http:\/\/192.168.1.107:8000\/api\/category?page=1",
+    "links": [
+        {
+            "url": null,
+            "label": "&laquo; Previous",
+            "active": false
+        },
+        {
+            "url": "http:\/\/192.168.1.107:8000\/api\/category?page=1",
+            "label": "1",
+            "active": true
+        },
+        {
+            "url": null,
+            "label": "Next &raquo;",
+            "active": false
+        }
+    ],
+    "next_page_url": null,
+    "path": "http:\/\/192.168.1.107:8000\/api\/category",
+    "per_page": 15,
+    "prev_page_url": null,
+    "to": 4,
+    "total": 4
+}

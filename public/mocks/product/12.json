@@ -1,0 +1,23 @@
+{
+    "id": 12,
+    "company_id": 1,
+    "category_id": 1,
+    "name": "Del Valle Laranja 400ml",
+    "value": 17.90,
+    "resume": null,
+    "details": "Deliciosos sabores à sua escolha. Néctar de fruta no sabor de Laranja 400ml",
+    "image": "2.png",
+    "highlight": 1,
+    "visible_online": 1,
+    "created_at": "2025-12-16T21:30:38.000000Z",
+    "updated_at": "2025-12-16T21:30:38.000000Z",
+    "url_image": "images/demo/products/12.jpeg",
+    "category": {
+        "id": 4,
+        "company_id": 1,
+        "name": "Bebidas Frias",
+        "order": 4,
+        "created_at": "2025-12-16 21:27:30",
+        "updated_at": "2025-12-16 21:27:30"
+    }
+}

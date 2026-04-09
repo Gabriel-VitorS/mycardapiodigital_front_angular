@@ -10,7 +10,7 @@ import { MenuConfigRequest, MenuConfiResponse } from '../../interfaces';
 export class MenuConfigService {
 
   private http = inject(HttpClient)
-  private readonly API_URL = signal(environment.api_url)
+  private readonly API_URL = environment.mock ? signal('mocks/menu-config.json') : signal(environment.api_url)
 
   setMenuIsConfigured = signal(false)
   get getMenuIsConfigured(){
@@ -28,6 +28,15 @@ export class MenuConfigService {
   }
 
   httpGetMenuConfig(){
+    if(environment.mock){
+      return this.http.get<MenuConfiResponse>(`${this.API_URL()}`).pipe(
+        tap((res) =>{
+          this.setMenuConfig.set(res)
+          this.setLinkMenu.set(`${window.location.origin}/#/cardapio/${res.url}`)
+          this.setMenuIsConfigured.set(true)
+        })
+      )
+    }
     return this.http.get<MenuConfiResponse>(`${this.API_URL()}/configuration`).pipe(
       tap((res) =>{
         this.setMenuConfig.set(res)
@@ -38,10 +47,16 @@ export class MenuConfigService {
   }
 
   httpPostMenuConfig(MenuConfigRequest: MenuConfigRequest){
+    if(environment.mock)
+      return this.http.get(`${this.API_URL()}`)
+
     return this.http.post(`${this.API_URL()}/configuration`, MenuConfigRequest)
   }
 
   httpPutMenuConfig(id:number, MenuConfigRequest: MenuConfigRequest){
+    if(environment.mock)
+      return this.http.get(`${this.API_URL()}`)
+
     return this.http.put(`${this.API_URL()}/configuration/${id}`, MenuConfigRequest)
   }
 
@@ -51,6 +66,8 @@ export class MenuConfigService {
    * @returns void
    */
   httpPostImageLogo(formData: FormData){
+    if(environment.mock)
+      return this.http.get(`${this.API_URL()}`)
     return this.http.post(`${this.API_URL()}/configuration/logo_image`, formData)
   }
 

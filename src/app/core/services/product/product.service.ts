@@ -10,7 +10,7 @@ import { tap } from 'rxjs';
 export class ProductService {
 
   private http = inject(HttpClient)
-  private readonly API_URL = signal(environment.api_url)
+  private readonly API_URL = environment.mock ? signal('mocks/product') : signal(environment.api_url)
 
   private setListProducts = signal<ProductsReponse | null>(null)
   get getListProducts(){
@@ -18,6 +18,14 @@ export class ProductService {
   }
 
   httpListProducts(productParams: ProductParams){
+
+    if(environment.mock){
+      return this.http.get<ProductsReponse>(`${this.API_URL()}/product.json`).pipe(
+        tap((res)=>{
+          this.setListProducts.set(res)
+        })
+      )
+    }
 
     let params = new HttpParams()
 
@@ -52,6 +60,15 @@ export class ProductService {
   }
 
   httpGetProduct(id: number){
+
+    if(environment.mock){
+      return this.http.get<ProductResponse>(`${this.API_URL()}/${id}.json`).pipe(
+        tap((res)=>{
+          this.setProduct.set(res)
+        })
+      )
+    }
+
     return this.http.get<ProductResponse>(`${this.API_URL()}/product/${id}`).pipe(
       tap((res)=>{
         this.setProduct.set(res)
@@ -60,14 +77,23 @@ export class ProductService {
   }
 
   httpPostProduct(productRequest: ProductRequest){
+    if(environment.mock)
+      return this.http.get<number>(`${this.API_URL()}/product.json`)
+
     return this.http.post<number>(`${this.API_URL()}/product`, productRequest)
   }
 
   httpPutProduct(id: number,productRequest: ProductRequest){
+    if(environment.mock)
+      return this.http.get<number>(`${this.API_URL()}/product.json`)
+
     return this.http.put<number>(`${this.API_URL()}/product/${id}`, productRequest)
   }
 
   httpDeleteProduct(id:number){
+      if(environment.mock)
+        return this.http.get<number>(`${this.API_URL()}/product.json`)
+
     return this.http.delete<number>(`${this.API_URL()}/product/${id}`)
   }
 
@@ -77,6 +103,8 @@ export class ProductService {
    * @returns void
    */
   httpPostImageProduct(formData: FormData){
+      if(environment.mock)
+        return this.http.get(`${this.API_URL()}/product.json`)
     return this.http.post(`${this.API_URL()}/product/product_image`, formData)
   }
 }

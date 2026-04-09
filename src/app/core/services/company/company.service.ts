@@ -11,7 +11,7 @@ import { CompanyReponse } from '../../interfaces';
 })
 export class CompanyService {
   private http = inject(HttpClient)
-  private readonly API_URL = signal(environment.api_url)
+  private readonly API_URL = environment.mock ? signal('mocks/company.json') : signal(environment.api_url)
 
   private setCompany = signal<CompanyReponse | null>(null)
 
@@ -20,6 +20,15 @@ export class CompanyService {
   }
 
   httpGetCompany(){
+
+    if(environment.mock){
+      return this.http.get<CompanyReponse>(`${this.API_URL()}`).pipe(
+        tap((res) =>{
+          this.setCompany.set(res)
+        })
+      )
+    }
+
     return this.http.get<CompanyReponse>(`${this.API_URL()}/company`).pipe(
       tap((res) =>{
         this.setCompany.set(res)
