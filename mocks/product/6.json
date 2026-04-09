@@ -1,0 +1,23 @@
+{
+    "id": 6,
+    "company_id": 1,
+    "category_id": 2,
+    "name": "Tasty Turbo 2 Carnes",
+    "value": 43.50,
+    "resume": null,
+    "details": "Os novos sanduíches contêm dois hambúrgueres de carne 100% bovina. O peso total da carne in natura (somando-se os dois hambúrgueres) aumentou em 51,7%-77,6g, passando de 150g para 227,6g, em comparação com o peso total de carne in natura (um hambúrguer) presente nas versões anteriores. Composto pelo icônico molho tasty, queijo processado sabor emental, tomate, alface, cebola, tudo isso no pão com gergelim",
+    "image": "6.png",
+    "highlight": 0,
+    "visible_online": 1,
+    "created_at": "2025-12-19T17:57:40.000000Z",
+    "updated_at": "2025-12-19T17:57:40.000000Z",
+    "url_image": "images/demo/products/6.jpeg",
+    "category": {
+        "id": 2,
+        "company_id": 1,
+        "name": "Carne Bovina",
+        "order": 2,
+        "created_at": "2025-12-16 21:27:47",
+        "updated_at": "2025-12-16 21:27:47"
+    }
+}

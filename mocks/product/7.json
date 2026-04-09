@@ -1,0 +1,23 @@
+{
+    "id": 7,
+    "company_id": 1,
+    "category_id": 3,
+    "name": "Brabo Brabíssimo Frango",
+    "value": 43.90,
+    "resume": null,
+    "details": "O novo sanduíche é composto por dois empanados com frango, a méquinese, a exclusiva maionese especial com sabor de carne defumada, molho do CBO (o saboroso molho emulsionado com especiarias e derivados lácteos), alface, fatias de bacon, queijo processado sabor cheddar, cebola crispy, tudo isso no pão tipo brioche trazendo uma explosão de sabores pros seus dias de glória",
+    "image": "5.png",
+    "highlight": 0,
+    "visible_online": 1,
+    "created_at": "2025-12-19T17:57:13.000000Z",
+    "updated_at": "2025-12-19T17:57:13.000000Z",
+    "url_image": "images/demo/products/7.jpeg",
+    "category": {
+        "id": 3,
+        "company_id": 1,
+        "name": "Frango",
+        "order": 3,
+        "created_at": "2025-12-16 21:27:41",
+        "updated_at": "2025-12-16 21:27:41"
+    }
+}

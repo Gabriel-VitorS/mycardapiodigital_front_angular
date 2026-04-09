@@ -1,0 +1,23 @@
+{
+    "id": 1,
+    "company_id": 1,
+    "category_id": 1,
+    "name": "McFlurry Trufa Língua de Gato DUO morango",
+    "value": 19.50,
+    "resume": null,
+    "details": "Sobremesa composta por bebida láctea sabor baunilha, cobertura de morango e trufas língua de gato DUO da Kopenhagen.",
+    "image": null,
+    "highlight": 0,
+    "visible_online": 1,
+    "created_at": "2025-12-19T18:08:14.000000Z",
+    "updated_at": "2025-12-19T18:08:14.000000Z",
+    "url_image": "images/demo/products/1.png",
+    "category": {
+        "id": 1,
+        "company_id": 1,
+        "name": "Lançamentos",
+        "order": 1,
+        "created_at": "2025-12-19 18:06:52",
+        "updated_at": "2025-12-19 18:06:52"
+    }
+}

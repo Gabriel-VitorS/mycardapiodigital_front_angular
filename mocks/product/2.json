@@ -1,0 +1,23 @@
+{
+    "id": 2,
+    "company_id": 1,
+    "category_id": 1,
+    "name": "Duplo Cheddar McMelt",
+    "value": 31.40,
+    "resume": null,
+    "details": "Dois hambúrgueres (100% carne bovina), molho lácteo com queijo tipo cheddar, cebola ao molho shoyu e pão escuro com gergelim.",
+    "image": null,
+    "highlight": 0,
+    "visible_online": 1,
+    "created_at": "2025-12-19T18:07:51.000000Z",
+    "updated_at": "2025-12-19T18:07:51.000000Z",
+    "url_image": "images/demo/products/2.png",
+    "category": {
+        "id": 1,
+        "company_id": 1,
+        "name": "Lançamentos",
+        "order": 1,
+        "created_at": "2025-12-19 18:06:52",
+        "updated_at": "2025-12-19 18:06:52"
+    }
+}

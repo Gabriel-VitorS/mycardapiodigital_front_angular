@@ -1,0 +1,23 @@
+{
+    "id": 14,
+    "company_id": 1,
+    "category_id": 1,
+    "name": "Top Sundae Calda de Caramelo",
+    "value": 14.00,
+    "resume": null,
+    "details": "Bebida láctea sabor baunilha com uma super camada de cobertura de caramelo e ainda por cima com farofa de paçoca. O canudo completa a tentação",
+    "image": "2.png",
+    "highlight": 1,
+    "visible_online": 1,
+    "created_at": "2025-12-16T21:30:38.000000Z",
+    "updated_at": "2025-12-16T21:30:38.000000Z",
+    "url_image": "images/demo/products/14.jpeg",
+    "category": {
+        "id": 5,
+        "company_id": 1,
+        "name": "Sobremesas",
+        "order": 5,
+        "created_at": "2025-12-16 21:27:30",
+        "updated_at": "2025-12-16 21:27:30"
+    }
+}

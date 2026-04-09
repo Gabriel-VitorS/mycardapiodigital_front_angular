@@ -1,0 +1,23 @@
+{
+    "id": 9,
+    "company_id": 1,
+    "category_id": 2,
+    "name": "McCrispy Chicken Deluxe",
+    "value": 30.90,
+    "resume": null,
+    "details": "Sanduíche composto pelo novo pão do Méqui, peito de frango temperado empanado, maionese, alface américa e tomate",
+    "image": "3.png",
+    "highlight": 0,
+    "visible_online": 1,
+    "created_at": "2025-12-16T21:32:00.000000Z",
+    "updated_at": "2025-12-16T21:32:00.000000Z",
+    "url_image": "images/demo/products/9.jpeg",
+    "category": {
+        "id": 3,
+        "company_id": 1,
+        "name": "Frango",
+        "order": 3,
+        "created_at": "2025-12-16 21:27:41",
+        "updated_at": "2025-12-16 21:27:41"
+    }
+}
