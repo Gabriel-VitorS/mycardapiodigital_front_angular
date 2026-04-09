@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { CategoryParams, CategoriesReponse, CategoryRequest, CategoryResponse } from '../../interfaces';
-import { tap } from 'rxjs';
+import { map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,16 @@ export class CategoryService {
 
     if(environment.mock){
       return this.http.get<CategoriesReponse>(`${this.API_URL()}/category.json`).pipe(
+        map( res =>{
+          if(!categoryParams.name)
+            return res
+
+          const filtredData = res.data.filter(cat => {
+            return categoryParams.name ? cat.name.toLowerCase().includes(categoryParams.name.toLowerCase()) : true
+          })
+          
+          return {... res, data: filtredData} as CategoriesReponse
+        }),
         tap((res)=>{
           this.setListCategory.set(res)
         })
