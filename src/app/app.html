@@ -1,7 +1,7 @@
-@if (isDemo()) {
-<div class="alert alert-danger rounded-0 m-0 text-center" role="alert">
-   <small>Esta é uma  <strong>demonstração.</strong> Por tanto, não será salva nenhuma configuração.</small>     
-</div>
+@if (isDemo() && isAlertOpen()) {
+    <ngb-alert type="danger" class="rounded-0 m-0" (closed)="isAlertOpen.set(false)">
+        <small>Esta é uma  <strong>demonstração.</strong> Por tanto, não será salvo nenhum dado.</small>          
+    </ngb-alert>
 }
 <router-outlet />
 <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>

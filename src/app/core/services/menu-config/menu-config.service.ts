@@ -32,7 +32,7 @@ export class MenuConfigService {
       return this.http.get<MenuConfiResponse>(`${this.API_URL()}`).pipe(
         tap((res) =>{
           this.setMenuConfig.set(res)
-          this.setLinkMenu.set(`${window.location.origin}/#/cardapio/${res.url}`)
+          this.setLinkMenu.set(`${window.location.origin}${window.location.pathname}#/cardapio/${res.url}`)
           this.setMenuIsConfigured.set(true)
         })
       )
