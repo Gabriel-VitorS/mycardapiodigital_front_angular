@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { EToastOptions } from '../../../core/enums/ToastOptions.enum';
@@ -21,7 +21,7 @@ import { FullScreenLayoutComponent } from "../../../shared/components/layout/ful
   styleUrls: ['./login.component.scss'],
   imports: [FullScreenLayoutComponent, ReactiveFormsModule, DefaultInputComponent, PasswordInputComponent, SpinnerSmComponent, RouterLink],
 })
-export default class LoginComponent {
+export default class LoginComponent implements OnInit {
 
   private fb = inject(FormBuilder)
   private authService = inject(AuthService)
@@ -36,7 +36,10 @@ export default class LoginComponent {
   })
 
 
-
+  ngOnInit(): void {
+    this.loginForm.get('email')?.disable()
+    this.loginForm.get('password')?.disable()
+  }
   submit(){
 
     if(!this.loginForm.valid)
