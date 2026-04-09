@@ -21,7 +21,7 @@ import { FullScreenLayoutComponent } from "../../../shared/components/layout/ful
   styleUrls: ['./login.component.scss'],
   imports: [FullScreenLayoutComponent, ReactiveFormsModule, DefaultInputComponent, PasswordInputComponent, SpinnerSmComponent, RouterLink],
 })
-export default class LoginComponent implements OnInit {
+export default class LoginComponent{
 
   private fb = inject(FormBuilder)
   private authService = inject(AuthService)
@@ -36,10 +36,6 @@ export default class LoginComponent implements OnInit {
   })
 
 
-  ngOnInit(): void {
-    this.loginForm.get('email')?.disable()
-    this.loginForm.get('password')?.disable()
-  }
   submit(){
 
     if(!this.loginForm.valid)
